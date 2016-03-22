@@ -19,7 +19,7 @@ along with localtube.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-
+#include "disk_space.h"
 
 
 
@@ -374,6 +374,11 @@ void MainWindow::videoDoneDownloading(Video *vid){
   updateUI();
 }
 
+void MainWindow::diskSPaceChangedSlot(){
+
+  downloadVideo();
+}
+
 void MainWindow::on_browse_clicked()
 {
   QString path = QFileDialog::getExistingDirectory (this, tr("Directory"));
@@ -567,4 +572,13 @@ void MainWindow::on_actionAbout_triggered()
   aboutWindow->show();
 
   //qDebug() << "kikoo";
+}
+
+void MainWindow::on_actionDisk_Space_limit_triggered()
+{
+  Disk_space* diskSpaceWindow = new Disk_space(this, this->settings);
+
+  connect(diskSpaceWindow, SIGNAL(disklimitChanged()), this, SLOT(diskSPaceChangedSlot()));
+
+  diskSpaceWindow->show();
 }

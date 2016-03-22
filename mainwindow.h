@@ -79,6 +79,7 @@ public slots:
   void displayingVideos();
   void videoDoneDownloading(Video *vid);
   void videoStartDownloading(Video *);
+  void diskSPaceChangedSlot();
   void doneInstallingYoutubeDl();
   void showWindow();
 
@@ -103,6 +104,7 @@ private slots:
   void on_authCode_textChanged();
 
   void on_actionAbout_triggered();
+  void on_actionDisk_Space_limit_triggered();
 
 private:
     Ui::MainWindow *ui;
